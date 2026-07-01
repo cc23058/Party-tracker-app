@@ -40,7 +40,7 @@ tk.Label(frame, text="Select Item: ", bg="grey").pack()
 item_menu = tk.OptionMenu(frame, selected_items, *items.keys())
 item_menu.pack()
 
-tk.Label(frame, text="Quantity: ", bg="grey").pack()
+tk.Label(frame, text="Quantity (1-500): ", bg="grey").pack()
 quantity_entry = tk.Entry(frame)
 quantity_entry.pack()
 
