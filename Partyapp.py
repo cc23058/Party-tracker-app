@@ -1,13 +1,14 @@
 import tkinter as tk
 from tkinter import messagebox
+
 #Creating the main window
 root = tk.Tk()
 root.title("Party Management App")
 root.geometry("1000x1000")
-root.configure(bg="lightblue")
+root.configure(bg="grey")
 
 #centering of it
-frame = tk.Frame(root)
+frame = tk.Frame(root, bg="grey")
 frame.pack()
 frame.place(rely = 0.5, relx = 0.5, anchor = "center")
 
@@ -27,19 +28,19 @@ items = {
 
 selected_items = tk.StringVar(value=list(items.keys())[0])
 
-tk.Label(frame, text="Name: ").pack()
+tk.Label(frame, text="Name: ", bg="grey").pack()
 name_entry = tk.Entry(frame)
 name_entry.pack()
 
-tk.Label(frame, text="Receipt Number: ").pack()
+tk.Label(frame, text="Receipt Number: ", bg="grey").pack()
 receipt_entry = tk.Entry(frame)
 receipt_entry.pack()
 
-tk.Label(frame, text="Select Item: ").pack()
+tk.Label(frame, text="Select Item: ", bg="grey").pack()
 item_menu = tk.OptionMenu(frame, selected_items, *items.keys())
 item_menu.pack()
 
-tk.Label(frame, text="Quantity: ").pack()
+tk.Label(frame, text="Quantity: ", bg="grey").pack()
 quantity_entry = tk.Entry(frame)
 quantity_entry.pack()
 
