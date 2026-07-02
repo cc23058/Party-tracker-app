@@ -28,24 +28,38 @@ items = {
 
 selected_items = tk.StringVar(value=list(items.keys())[0])
 
-tk.Label(frame, text="Name: ", bg="grey").pack()
-name_entry = tk.Entry(frame)
-name_entry.pack()
+#Layout
+main_frame = tk.Frame(root, bg="grey", padx=20, pady=20)
+main_frame.pack(fill="both", expand=True)
 
-tk.Label(frame, text="Receipt Number: ", bg="grey").pack()
-receipt_entry = tk.Entry(frame)
-receipt_entry.pack()
+form_frame = tk.LabelFrame(main_frame, text="New Hires", bg="grey", padx=15, pady=15)
+form_frame.pack(fill="x", pady=(0, 15))
 
-tk.Label(frame, text="Select Item: ", bg="grey").pack()
-item_menu = tk.OptionMenu(frame, selected_items, *items.keys())
-item_menu.pack()
+list_frame = tk.LabelFrame(main_frame, text="Currently Hired Items", bg="grey", padx=15, pady=15)
+list_frame.pack(fill="both", expand=True)
 
-tk.Label(frame, text="Quantity (1-500): ", bg="grey").pack()
-quantity_entry = tk.Entry(frame)
-quantity_entry.pack()
+#Gridding the form frame
+form_frame.columnconfigure(1, weight=1)
+
+
+tk.Label(form_frame, text="Name: ", bg="grey").grid(row=0, column=0, sticky="e", pady=5)
+name_entry = tk.Entry(form_frame)
+name_entry.grid(row=0, column=1, sticky="ew", padx=5,pady=5)
+
+tk.Label(form_frame, text="Receipt Number: ", bg="grey").grid(row=1, column=0, sticky="e",padx=5, pady=5)
+receipt_entry = tk.Entry(form_frame)
+receipt_entry.grid(row=1, column=1, sticky="ew", padx=5, pady=5)
+
+tk.Label(form_frame, text="Select Item: ", bg="grey").grid(row=2, column=0, sticky="e", pady=5)
+item_menu = tk.OptionMenu(form_frame, selected_items, *items.keys())
+item_menu.grid(row=2, column=1, sticky="ew", padx=5, pady=5)
+
+tk.Label(form_frame, text="Quantity (1-500): ", bg="grey").grid(row=3, column=0, sticky="e", pady=5)
+quantity_entry = tk.Entry(form_frame)
+quantity_entry.grid(row=3, column=1, sticky="ew", padx=5, pady=5)
 
 #Listbox
-hire_listbox = tk.Listbox(frame, width=120)
+hire_listbox = tk.Listbox(list_frame, width=120)
 hire_listbox.pack()
 
 #List holding data
@@ -109,8 +123,8 @@ def add_hire():
 
     refresh_list()
     clear_entries()
-add_button = tk.Button(frame, text="Add Hire", command=add_hire)
-add_button.pack(pady=5)
+add_button = tk.Button(form_frame, text="Add Hire", command=add_hire)
+add_button.grid(row=4, column=1, sticky="ew", padx=5, pady=5)
 
 #Returning Items
 def return_item():
@@ -127,7 +141,7 @@ def return_item():
     refresh_list()
     messagebox.showinfo("Item successfully returned.")
 
-tk.Button(frame, text="Return Item", command=return_item).pack(pady=5)
+tk.Button(list_frame, text="Return Item", command=return_item).pack(pady=5)
 
 #Make code run
 root.mainloop()
